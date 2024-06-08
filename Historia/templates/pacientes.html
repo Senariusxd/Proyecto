@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Lista de Pacientes</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>CI</th>
+			<th>Teléfono</th>
+			<th>Dirección</th>
+			<th>Ocupación</th>
+			<th>Grupo</th>
+			<th>Acciones</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for paciente in pacientes %}
+		<tr>
+			<td>{{ paciente.id }}</td>
+			<td>
+				<a href="{% url 'patient_histories' ci=paciente.ci %}"
+					>{{ paciente.nombre }}</a
+				>
+			</td>
+			<td>{{ paciente.apellidos }}</td>
+			<td>{{ paciente.ci }}</td>
+			<td>{{ paciente.telefono }}</td>
+			<td>{{ paciente.direccion }}</td>
+			<td>{{ paciente.ocupacion }}</td>
+			<td>{{ paciente.grupos.nombre }}</td>
+			<td>
+				<a href="{% url 'edit_patient' ci=paciente.ci %}">Editar</a>
+				<a href="{% url 'delete_patient' ci=paciente.ci %}">Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+<a href="{% url 'create_patient' %}">Crear Paciente</a>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Historias de {{ paciente.nombre }}</h1>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Fecha</th>
+			<th>Paciente</th>
+			<th>Examen Medico</th>
+			<th>Examen Físico</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for historia in paciente.historial.all %}
+		<tr>
+			<td>{{ historia.id }}</td>
+			<td>{{ historia.fecha }}</td>
+			<td>{{ historia.paciente.nombre }}</td>
+			<td>{{ historia.em }}</td>
+			<td>{{ historia.ef }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+<a href="{% url 'historial_create' %}">Crear Historial</a>
+<a href="{% url 'pacientes' %}">Volver a Pacientes</a>
+{% endblock %}

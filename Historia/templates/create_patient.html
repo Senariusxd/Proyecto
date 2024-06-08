@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Crear Paciente</h1>
+
+<form method="post">
+	{% csrf_token %}
+	<div>
+		<label for="nombre">Nombre:</label>
+		<input type="text" id="nombre" name="nombre" required />
+	</div>
+	<div>
+		<label for="apellidos">Apellidos:</label>
+		<input type="text" id="apellidos" name="apellidos" required />
+	</div>
+	<div>
+		<label for="ci">CI:</label>
+		<input type="text" id="ci" name="ci" required />
+	</div>
+	<div>
+		<label for="telefono">Teléfono:</label>
+		<input type="text" id="telefono" name="telefono" required />
+	</div>
+	<div>
+		<label for="direccion">Dirección:</label>
+		<input type="text" id="direccion" name="direccion" required />
+	</div>
+	<div>
+		<label for="ocupacion">Ocupación:</label>
+		<input type="text" id="ocupacion" name="ocupacion" required />
+	</div>
+	<div>
+		<label for="grupos">Grupo:</label>
+		<select id="grupos" name="grupos" required>
+			{% for grupo in grupos %}
+			<option value="{{ grupo.nombre }}">{{ grupo.nombre }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	<button type="submit">Crear Paciente</button>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Crear Historial</h1>
+<form method="post">
+	{% csrf_token %}
+	<div>
+		<label for="id">ID:</label>
+		<input type="text" id="id" name="id" required />
+	</div>
+	<div>
+		<label for="fecha">Fecha:</label>
+		<input type="text" id="fecha" name="fecha" required />
+	</div>
+	<div>
+		<label for="paciente">Paciente:</label>
+		<select id="paciente" name="paciente" required>
+			{% for paciente in pacientes %}
+			<option value="{{ paciente.id }}">{{ paciente.nombre }}</option>
+			{% endfor %}
+		</select>
+	</div>
+	<div>
+		<label for="ExamenMedico">Examen Médico:</label>
+		<input type="text" id="ExamenMedico" name="ExamenMedico" required />
+	</div>
+	<div>
+		<label for="ExamenFisico">Examen Físico:</label>
+		<input type="text" id="ExamenFisico" name="ExamenFisico" required />
+	</div>
+	<button type="submit">Crear</button>
+</form>
+{% endblock %}
